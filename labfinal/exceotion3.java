@@ -12,12 +12,21 @@ public class exceotion3 {
         System.out.print("Enter  a value you want to division by : ");
         int y = sc.nextInt();
 
-        System.out.println("Enter an index value : ");
+        System.out.print("Enter an index value : ");
         int index = sc.nextInt();
 
         try {
             System.out.println("Result : " + x / y);
             System.out.println("The array elemetn is " + arr[index]);
+            System.out.println("Before nested try");
+            try {
+                System.out.println(s.charAt(2));
+            } catch (NullPointerException e) {
+
+                System.out.println("Exception found at nested try catch ...");
+                System.out.println(e);
+            }
+            System.out.println("After cheking first nested try catch");
 
         } catch (ArithmeticException e) {
             System.out.println("Inter valid number which is not 'ZERO'");
@@ -26,6 +35,9 @@ public class exceotion3 {
 
             System.out.println("Enter valid index ");
             System.out.println(e);
-        }
+        } // finally {
+          // System.out.println("Try catch completed");
+          // }
+        System.out.println("Code end here");
     }
 }
