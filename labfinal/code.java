@@ -1,55 +1,70 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Custom exception for insufficient balance
-class InsufficientBalanceException extends Exception {
-    public InsufficientBalanceException(String message) {
+class insufficientBalanceException extends Exception {
+    insufficientBalanceException(String message) {
         super(message);
     }
 }
 
-// Custom exception for invalid withdrawal amount
-class InvalidAmountException extends Exception {
-    public InvalidAmountException(String message) {
+class inputMismatchException extends Exception {
+    inputMismatchException(String message) {
+        super(message);
+    }
+}
+
+class invalidAmountException extends Exception {
+    invalidAmountException(String message) {
         super(message);
     }
 }
 
 public class code {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        double withdraw;
 
+        System.out.println("Enter the amount to balance: ");
+        double balance = sc.nextDouble();
         try {
-            // Prompt user for account balance
-            System.out.print("Enter your current account balance: ");
-            double balance = scanner.nextDouble();
-
-            // Prompt user for withdrawal amount
-            System.out.print("Enter the amount you want to withdraw: ");
-            double withdrawalAmount = scanner.nextDouble();
-
-            // Check for invalid withdrawal amount
-            if (withdrawalAmount < 0) {
-                throw new InvalidAmountException("Withdrawal amount cannot be negative.");
+            System.out.println("Enter the amount to withdraw: ");
+            if (!sc.hasNextDouble()) {
+                throw new inputMismatchException("Invalid input type. Please enter a number.");
             }
+            withdraw = sc.nextDouble();
+            withdraw(withdraw);
+        } catch (insufficientBalanceException e) {
 
-            // Check for insufficient balance
-            if (withdrawalAmount > balance) {
-                throw new InsufficientBalanceException("Insufficient balance for this transaction.");
-            }
+            System.out.println(e.getMessage());
+        } catch (inputMismatchException e) {
 
-            // Perform withdrawal
-            balance -= withdrawalAmount;
-            System.out.println("Transaction successful! Your new balance is: " + balance);
-
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input! Please enter a valid number.");
-        } catch (InsufficientBalanceException | InvalidAmountException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An unexpected error occurred: " + e.getMessage());
         } finally {
-            System.out.println("Thank you for using our ATM. Have a great day!");
+            System.out.println("Transaction completed.");
         }
 
-        scanner.close();
     }
+
+    public static void withdraw(double amount) throws insufficientBalanceException, invalidAmountException {
+        double balance = 500;
+
+        if (amount > balance) {
+            throw new insufficientBalanceException("Insufficient balance for withdrawal.");
+        } else if (amount <= 0) {
+            throw new invalidAmountException("Invalid amount entered. Please enter a valid number.");
+        } else {
+            System.out.println("Withdrawal successful. Amount withdrawn: " + amount);
+            balance -= amount;
+        }
+    }
+
+    public static void withdraw(int amount) throws inputMismatchException {
+        throw new inputMismatchException("Invalid input type. Please enter a number.");
+    }
+
+    public static void withdraw(String amount) throws invalidAmountException {
+        throw new invalidAmountException("Invalid amount entered. Please enter a valid number.");
+    }
+
 }
