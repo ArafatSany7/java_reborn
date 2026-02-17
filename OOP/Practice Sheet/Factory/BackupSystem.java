@@ -35,10 +35,10 @@ class StorageFactory {
 public class BackupSystem {
     public static void main(String[] args) {
 
-        CloudStorage S3 = StorageFactory.create("S3");
+        CloudStorage storage = StorageFactory.create("S3");
         CloudStorage GS = StorageFactory.create("GS");
 
-        System.out.println("Via " + S3.UploadFile("Amazon S3"));
+        System.out.println("Via " + storage.UploadFile("Amazon S3"));
 
     }
 }
