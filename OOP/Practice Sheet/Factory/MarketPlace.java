@@ -46,13 +46,17 @@ class paymentFactory {
 }
 
 class MarketPlace {
-    public String pay(String method, double amount) {
-        payment pm = paymentFactory.create(method);
-        return pm.pay(amount);
-    }
+    // public String pay(String method, double amount) {
+    // payment pm = paymentFactory.create(method);
+    // return pm.pay(amount);
+    // }
 
     public static void main(String[] args) {
-        MarketPlace marketplace = new MarketPlace();
-        System.out.println(marketplace.pay("Bank", 900));
+        payment bank = paymentFactory.create("Bank");
+        payment card = paymentFactory.create("card");
+        payment paypal = paymentFactory.create("payPal");
+
+        System.out.println(card.pay(900));
+        System.out.println(card.invoice(900));
     }
 }
