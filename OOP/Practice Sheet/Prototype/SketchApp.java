@@ -60,8 +60,8 @@ class TrouserSketch implements FlatSketch {
 public class SketchApp {
     public static void main(String[] args) {
 
-        TrouserSketch trouserOriginal = new TrouserSketch("Straight", 29);
-        trouserOriginal.display();
+        FlatSketch trouserOriginal = new TrouserSketch("Straight", 29);
+        ((TrouserSketch) trouserOriginal).display();
 
         TrouserSketch dupliTrouser = (TrouserSketch) trouserOriginal.clone();
         dupliTrouser.setTrouserFit("Baggy");
