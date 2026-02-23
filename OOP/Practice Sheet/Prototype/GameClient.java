@@ -9,7 +9,8 @@ class Warrior implements GameCharacter {
     private int health, attackPower, defence;
     private String weapon;
 
-    public Warrior(int health, int attackPower, int defence, String weapon) {
+    public Warrior(String type, int health, int attackPower, int defence, String weapon) {
+        this.type = type;
         this.health = health;
         this.attackPower = attackPower;
         this.defence = defence;
@@ -17,7 +18,7 @@ class Warrior implements GameCharacter {
     }
 
     public GameCharacter clone() {
-        return new Warrior(this.health, this.attackPower, this.defence, this.weapon);
+        return new Warrior(this.type, this.health, this.attackPower, this.defence, this.weapon);
     }
 
     public void setWeapon(String weapon) {
@@ -37,7 +38,7 @@ class Warrior implements GameCharacter {
 public class GameClient {
     public static void main(String[] args) {
 
-        GameCharacter protoWarior = new Warrior(00, 45, 45, "Soerd");
+        GameCharacter protoWarior = new Warrior("Warrior", 00, 45, 45, "Soerd");
 
         Warrior w1 = (Warrior) protoWarior.clone();
         w1.setHealth(95);

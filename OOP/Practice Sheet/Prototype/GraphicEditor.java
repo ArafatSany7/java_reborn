@@ -62,12 +62,18 @@ public class GraphicEditor {
     public static void main(String[] args) {
 
         Circle originalCircle = new Circle("Red", 9);
+        Rectangle origiRectangle = new Rectangle("RED", 7);
 
         originalCircle.display();
+        origiRectangle.display();
 
         Circle duplicateCircle = (Circle) originalCircle.clone();
         duplicateCircle.setColor("Green");
         duplicateCircle.setSize(95);
+
+        Rectangle dupiRectangle = (Rectangle) origiRectangle.clone();
+        dupiRectangle.setColor("Yellow");
+        dupiRectangle.setSize(89);
 
         duplicateCircle.display();
     }
